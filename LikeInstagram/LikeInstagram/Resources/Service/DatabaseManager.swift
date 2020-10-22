@@ -13,7 +13,6 @@ public class DatabaseManager {
 
     // Singleton Object
     static let shared = DatabaseManager()
-
     private let database = Database.database().reference()
 
     private init() { }
@@ -35,7 +34,7 @@ public class DatabaseManager {
     ///   - username: 사용자 이름 정보
     ///   - completion: 결과값 반환
     public func insertNewUser(with email: String, username: String, completion: @escaping (Bool) -> Void) {
-        
+
         // email : [username: username]
         database.child(email.makeSafeEmail()).setValue(["username": username]) { error, _ in
             if error == nil {

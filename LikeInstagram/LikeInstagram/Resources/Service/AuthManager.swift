@@ -18,7 +18,6 @@ public class AuthManager {
 
     // MARK: - Public
 
-    
     /// 새로운 계정 생성
     /// - Parameters:
     ///   - username: 사용자 이름 정보
@@ -52,7 +51,6 @@ public class AuthManager {
         }
     }
 
-    
     /// 로그인 유효 검증 함수
     /// - Parameters:
     ///   - username: 사용자 이름 정보
@@ -74,6 +72,19 @@ public class AuthManager {
             // login with username
             print(username)
         }
-
+    }
+    
+    /// Logout 함수
+    /// - Parameter completion: 결과값 반환
+    public func logout(completion: @escaping (Bool) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            completion(true)
+            return
+        } catch {
+            print(error.localizedDescription)
+            completion(false)
+            return
+        }
     }
 }

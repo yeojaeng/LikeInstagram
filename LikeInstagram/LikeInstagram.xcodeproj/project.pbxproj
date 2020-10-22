@@ -144,13 +144,11 @@
 		041A009225415BC100F6AC8B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				049BAA74254183D90004D75F /* Service */,
 				0449E587254172B3008B3F90 /* Constants */,
 				042A653325416766003AC1B7 /* GoogleService-Info.plist */,
 				041A007925415B8600F6AC8B /* AppDelegate.swift */,
 				041A007B25415B8600F6AC8B /* SceneDelegate.swift */,
-				0449E56625416DB0008B3F90 /* DatabaseManager.swift */,
-				0449E56C25416E6A008B3F90 /* StorageManager.swift */,
-				0449E56925416E47008B3F90 /* AuthManager.swift */,
 				0449E584254170F8008B3F90 /* Extensions.swift */,
 			);
 			path = Resources;
@@ -207,6 +205,16 @@
 				0449E588254172BE008B3F90 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		049BAA74254183D90004D75F /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0449E56625416DB0008B3F90 /* DatabaseManager.swift */,
+				0449E56C25416E6A008B3F90 /* StorageManager.swift */,
+				0449E56925416E47008B3F90 /* AuthManager.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		2DE7AC44222D32FE22A0BAF7 /* Frameworks */ = {

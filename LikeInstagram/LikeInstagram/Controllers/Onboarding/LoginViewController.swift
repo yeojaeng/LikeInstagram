@@ -89,63 +89,61 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
-        loginButton.addTarget(self,
-            action: #selector(didTapLoginButton),
-            for: .touchUpInside)
-        createAccountButton.addTarget(self,
-            action: #selector(didTapCreateAccountButton),
-            for: .touchUpInside)
-        termsButton.addTarget(self,
-            action: #selector(didTapTermsButton),
-            for: .touchUpInside)
-        privacyButton.addTarget(self,
-            action: #selector(didTapPrivacyButton),
-            for: .touchUpInside)
-
         usernameEmailField.delegate = self
         passwordField.delegate = self
         addSubViews()
+        loginButton.addTarget(self,
+                              action: #selector(didTapLoginButton),
+                              for: .touchUpInside)
+        createAccountButton.addTarget(self,
+                                      action: #selector(didTapCreateAccountButton),
+                                      for: .touchUpInside)
+        termsButton.addTarget(self,
+                              action: #selector(didTapTermsButton),
+                              for: .touchUpInside)
+        privacyButton.addTarget(self,
+                                action: #selector(didTapPrivacyButton),
+                                for: .touchUpInside)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
         // assign frame
-        headerView.frame = CGRect(x: 0,
-            y: view.top,
-            width: view.width,
-            height: view.height / 3.0)
+        headerView.frame = CGRect(x: view.left,
+                                  y: view.top,
+                                  width: view.width,
+                                  height: view.height / 3.0)
 
         usernameEmailField.frame = CGRect(x: 25,
-            y: headerView.bottom + 40,
-            width: view.width - 50,
-            height: 52.0)
+                                          y: headerView.bottom + 40,
+                                          width: view.width - 50,
+                                          height: 52.0)
 
         passwordField.frame = CGRect(x: 25,
-            y: usernameEmailField.bottom + 10,
-            width: view.width - 50,
-            height: 52.0)
+                                     y: usernameEmailField.bottom + 10,
+                                     width: view.width - 50,
+                                     height: 52.0)
 
         loginButton.frame = CGRect(x: 25,
-            y: passwordField.bottom + 30,
-            width: view.width - 50,
-            height: 52.0)
+                                   y: passwordField.bottom + 30,
+                                   width: view.width - 50,
+                                   height: 52.0)
 
         createAccountButton.frame = CGRect(x: 25,
-            y: loginButton.bottom + 10,
-            width: view.width - 50,
-            height: 52.0)
+                                           y: loginButton.bottom + 10,
+                                           width: view.width - 50,
+                                           height: 52.0)
 
         termsButton.frame = CGRect(x: 10,
-            y: view.height - view.safeAreaInsets.bottom - 100,
-            width: view.width - 20,
-            height: 50)
+                                   y: view.height - view.safeAreaInsets.bottom - 100,
+                                   width: view.width - 20,
+                                   height: 50)
 
         privacyButton.frame = CGRect(x: 10,
-            y: view.height - view.safeAreaInsets.bottom - 50,
-            width: view.width - 20,
-            height: 50)
+                                     y: view.height - view.safeAreaInsets.bottom - 50,
+                                     width: view.width - 20,
+                                     height: 50)
 
         configureHeaderView()
     }
@@ -160,14 +158,13 @@ class LoginViewController: UIViewController {
         }
 
         backgroundView.frame = headerView.bounds
-        // Add Instagram logo
         let logoView: UIImageView = UIImageView(image: UIImage(named: "logo"))
         headerView.addSubview(logoView)
         logoView.contentMode = .scaleAspectFit
         logoView.frame = CGRect(x: headerView.width / 4.0,
-            y: view.safeAreaInsets.top,
-            width: headerView.width / 2.0,
-            height: headerView.height - view.safeAreaInsets.top)
+                                y: view.safeAreaInsets.top,
+                                width: headerView.width / 2.0,
+                                height: headerView.height - view.safeAreaInsets.top)
     }
 
     private func addSubViews() {
@@ -182,13 +179,40 @@ class LoginViewController: UIViewController {
 
     @objc private func didTapLoginButton() {
         self.view.endEditing(true)
+        var username: String?
+        var email: String?
 
-        guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty,
-            let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
-                return
+        guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty else {
+            showAlert(title: "Login Error", message: "ID를 정확히 입력해주세요.")
+            return
+        }
+
+        guard let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
+            showAlert(title: "Login Error", message: "페스워드는 8자 이상으로 입력해주세요.")
+            return
+        }
+
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
+            // email
+            email = usernameEmail
+        } else {
+            // username
+            username = usernameEmail
         }
 
         // login function
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if success {
+                    // user logged in
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    // error occured
+                    self.showAlert(title: "Login Error", message: "로그인 에러 발생")
+                }
+            }
+        }
     }
 
     @objc private func didTapTermsButton() {
@@ -205,7 +229,9 @@ class LoginViewController: UIViewController {
 
     @objc private func didTapCreateAccountButton() {
         let registerVC = RegisterViewController()
-        present(registerVC, animated: true, completion: nil)
+        registerVC.title = "Create Account"
+        let navigationVC = UINavigationController(rootViewController: registerVC)
+        present(navigationVC, animated: true, completion: nil)
     }
 }
 

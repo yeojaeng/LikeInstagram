@@ -33,3 +33,22 @@ extension UIView {
         return frame.origin.x + frame.size.width
     }
 }
+
+extension String {
+    func makeSafeEmail() -> String {
+        return self.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
+    }
+}
+
+extension UIViewController {
+
+    func showAlert(title: String, message: String) {
+        let alertVC: UIAlertController = UIAlertController(title: title,
+            message: message,
+            preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK",
+            style: .cancel,
+            handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
+    }
+}

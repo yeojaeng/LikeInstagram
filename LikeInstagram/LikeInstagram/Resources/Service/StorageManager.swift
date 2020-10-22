@@ -11,8 +11,9 @@ import FirebaseStorage
 
 public class StorageManager {
 
-    // Singleton object
+    // Singleton Object
     static let shared = StorageManager()
 
+    private init() { }
     // MARK: - Public
 }

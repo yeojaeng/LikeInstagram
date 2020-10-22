@@ -13,10 +13,10 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        handleNotAuthenticated()
+        checkAuthStatus()
     }
 
-    fileprivate func handleNotAuthenticated() {
+    private func checkAuthStatus() {
         // Check auth status
         if Auth.auth().currentUser == nil {
             // show login

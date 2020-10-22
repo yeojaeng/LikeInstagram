@@ -1,0 +1,6 @@
+framework module Pods_LikeInstagram {
+  umbrella header "Pods-LikeInstagram-umbrella.h"
+
+  export *
+  module * { export * }
+}

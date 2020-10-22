@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - UIView Extension
+
 extension UIView {
 
     public var width: CGFloat {
@@ -34,21 +36,25 @@ extension UIView {
     }
 }
 
+// MARK: - String Extension
+
 extension String {
     func makeSafeEmail() -> String {
         return self.replacingOccurrences(of: "@", with: "-").replacingOccurrences(of: ".", with: "-")
     }
 }
 
+// MARK: - UIViewController Extension
+
 extension UIViewController {
 
     func showAlert(title: String, message: String) {
         let alertVC: UIAlertController = UIAlertController(title: title,
-            message: message,
-            preferredStyle: .alert)
+                                                           message: message,
+                                                           preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK",
-            style: .cancel,
-            handler: nil))
+                                        style: .cancel,
+                                        handler: nil))
         self.present(alertVC, animated: true, completion: nil)
     }
 }

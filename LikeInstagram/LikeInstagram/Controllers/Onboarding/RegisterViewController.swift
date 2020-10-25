@@ -121,6 +121,7 @@ class RegisterViewController: UIViewController {
             let username = usernameField.text, !username.isEmpty else {
                 return
         }
+        // Registration logic
         AuthManager.shared.registerNewUser(username: username, email: email, passwored: password) { [weak self]registered in
             guard let self = self else { return }
             if registered {

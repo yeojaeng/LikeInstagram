@@ -35,6 +35,10 @@
 		0449E56D25416E6A008B3F90 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449E56C25416E6A008B3F90 /* StorageManager.swift */; };
 		0449E585254170F8008B3F90 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449E584254170F8008B3F90 /* Extensions.swift */; };
 		0449E589254172BE008B3F90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449E588254172BE008B3F90 /* Constants.swift */; };
+		048AD26C25455D1D0094E54A /* FeedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD26B25455D1D0094E54A /* FeedPostTableViewCell.swift */; };
+		048AD27125455E540094E54A /* FeedPostHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD27025455E540094E54A /* FeedPostHeaderTableViewCell.swift */; };
+		048AD27525455E6B0094E54A /* FeedPostActionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD27425455E6B0094E54A /* FeedPostActionTableViewCell.swift */; };
+		048AD27825455E850094E54A /* FeedPostGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048AD27725455E850094E54A /* FeedPostGeneralTableViewCell.swift */; };
 		CA7F38BEF3BBA203AF65A6EC /* Pods_LikeInstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61710A71A64323780082220B /* Pods_LikeInstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +73,10 @@
 		0449E56C25416E6A008B3F90 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		0449E584254170F8008B3F90 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0449E588254172BE008B3F90 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		048AD26B25455D1D0094E54A /* FeedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostTableViewCell.swift; sourceTree = "<group>"; };
+		048AD27025455E540094E54A /* FeedPostHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		048AD27425455E6B0094E54A /* FeedPostActionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostActionTableViewCell.swift; sourceTree = "<group>"; };
+		048AD27725455E850094E54A /* FeedPostGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPostGeneralTableViewCell.swift; sourceTree = "<group>"; };
 		61710A71A64323780082220B /* Pods_LikeInstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LikeInstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D41564A6FD5F3CE0AF2C4842 /* Pods-LikeInstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeInstagram.release.xcconfig"; path = "Target Support Files/Pods-LikeInstagram/Pods-LikeInstagram.release.xcconfig"; sourceTree = "<group>"; };
 		F9668D166BF53FA147A9D7ED /* Pods-LikeInstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LikeInstagram.debug.xcconfig"; path = "Target Support Files/Pods-LikeInstagram/Pods-LikeInstagram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +138,7 @@
 		041A009025415BB900F6AC8B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				048AD26A25455D000094E54A /* Cells */,
 				041A009325415BE800F6AC8B /* Storyboards */,
 				041A008225415B8700F6AC8B /* Assets.xcassets */,
 			);
@@ -208,6 +217,25 @@
 				0449E588254172BE008B3F90 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		048AD26A25455D000094E54A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				048AD26F25455E220094E54A /* Feeds */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		048AD26F25455E220094E54A /* Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				048AD26B25455D1D0094E54A /* FeedPostTableViewCell.swift */,
+				048AD27025455E540094E54A /* FeedPostHeaderTableViewCell.swift */,
+				048AD27425455E6B0094E54A /* FeedPostActionTableViewCell.swift */,
+				048AD27725455E850094E54A /* FeedPostGeneralTableViewCell.swift */,
+			);
+			path = Feeds;
 			sourceTree = "<group>";
 		};
 		049BAA74254183D90004D75F /* Service */ = {
@@ -373,8 +401,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				041A00B025415CF800F6AC8B /* EditProfileViewController.swift in Sources */,
+				048AD27125455E540094E54A /* FeedPostHeaderTableViewCell.swift in Sources */,
 				0449E589254172BE008B3F90 /* Constants.swift in Sources */,
 				0420CD172541C7BC008BEE4C /* SettingCellModel.swift in Sources */,
+				048AD26C25455D1D0094E54A /* FeedPostTableViewCell.swift in Sources */,
 				041A00A825415CBD00F6AC8B /* RegisterViewController.swift in Sources */,
 				041A00C225415D6100F6AC8B /* PublishPostViewController.swift in Sources */,
 				041A009625415C3B00F6AC8B /* ExploreViewController.swift in Sources */,
@@ -389,12 +419,14 @@
 				041A00A525415CB400F6AC8B /* LoginViewController.swift in Sources */,
 				0449E585254170F8008B3F90 /* Extensions.swift in Sources */,
 				041A00B925415D1F00F6AC8B /* SearchViewController.swift in Sources */,
+				048AD27825455E850094E54A /* FeedPostGeneralTableViewCell.swift in Sources */,
 				041A009F25415C6300F6AC8B /* ProfileViewController.swift in Sources */,
 				0449E56A25416E47008B3F90 /* AuthManager.swift in Sources */,
 				041A007A25415B8600F6AC8B /* AppDelegate.swift in Sources */,
 				041A007C25415B8600F6AC8B /* SceneDelegate.swift in Sources */,
 				041A00B625415D0F00F6AC8B /* ListViewController.swift in Sources */,
 				041A00B325415D0200F6AC8B /* SettingsViewController.swift in Sources */,
+				048AD27525455E6B0094E54A /* FeedPostActionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

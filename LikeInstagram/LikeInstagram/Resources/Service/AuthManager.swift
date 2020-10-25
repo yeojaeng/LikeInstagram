@@ -73,7 +73,7 @@ public class AuthManager {
             print(username)
         }
     }
-    
+
     /// Logout 함수
     /// - Parameter completion: 결과값 반환
     public func logout(completion: @escaping (Bool) -> Void) {

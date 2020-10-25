@@ -7,11 +7,19 @@
 
 import UIKit
 
+import SafariServices
+
 /// 유저 정보 셋팅 컨트롤러
 final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
     let cellIdentifier: String = "cell"
+
+    enum SettingURLType {
+        case terms
+        case privacy
+        case help
+    }
 
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -38,25 +46,96 @@ final class SettingsViewController: UIViewController {
     }
 
     private func configureModels() {
-        let section = [
+        data.append([
+            SettingCellModel(title: "Edit Profile") { [weak self] in //
+                guard let self = self else { return }
+                self.didTapEditprofile()
+            },
+            SettingCellModel(title: "Invite Friends") { [weak self] in //
+                guard let self = self else { return }
+                self.didTapInviteFriends()
+            },
+            SettingCellModel(title: "Save Original Posts") { [weak self] in //
+                guard let self = self else { return }
+                self.didTapSaveOriginalPosts()
+            }
+            ])
+
+        data.append([
+            SettingCellModel(title: "Terms of service") { [weak self] in // handler: () -> Void
+                guard let self = self else { return }
+                self.openURL(type: .terms)
+            }
+            ])
+
+        data.append([
+            SettingCellModel(title: "Privacy Policy") { [weak self] in // handler: () -> Void
+                guard let self = self else { return }
+                self.openURL(type: .privacy)
+            }
+            ])
+
+        data.append([
+            SettingCellModel(title: "Help / Feedback") { [weak self] in // handler: () -> Void
+                guard let self = self else { return }
+                self.openURL(type: .help)
+            }
+            ])
+
+        data.append([
             SettingCellModel(title: "Logout") { [weak self] in // handler: () -> Void
                 guard let self = self else { return }
                 self.didTapLogout() // configureModels 호출시 didTapLogout 호출하도록 정의
             }
-        ]
-        data.append(section)
+            ])
     }
+
+    private func didTapEditprofile() {
+        let editprofileVC = EditProfileViewController()
+        editprofileVC.title = "Edit Profile"
+        let navigationVC = UINavigationController(rootViewController: editprofileVC)
+        present(navigationVC, animated: true, completion: nil)
+    }
+
+    private func didTapInviteFriends() {
+        // show share sheet to invite
+
+    }
+
+    private func didTapSaveOriginalPosts() {
+
+    }
+
+    private func openURL(type: SettingURLType) {
+        let urlString: String
+        switch type {
+        case .terms:
+            urlString = Constants.termsOfServiceURL
+
+        case .privacy:
+            urlString = Constants.privacyURL
+
+        case .help:
+            urlString = Constants.helpCenterURL
+        }
+
+        guard let url = URL(string: urlString) else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true, completion: nil)
+    }
+
+
 
     private func didTapLogout() {
         let actionSheet: UIAlertController = UIAlertController(title: "Logout",
-                                                               message: "정말 로그아웃 하시겠습니까?",
-                                                               preferredStyle: .actionSheet)
+            message: "정말 로그아웃 하시겠습니까?",
+            preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Cancel",
-                                            style: .cancel,
-                                            handler: nil))
+            style: .cancel,
+            handler: nil))
         actionSheet.addAction(UIAlertAction(title: "Logout",
-                                            style: .destructive,
-                                            handler: { _ in
+            style: .destructive,
+            handler: { _ in
                 // logout logic
                 AuthManager.shared.logout { [weak self] didLogout in
                     guard let self = self else { return }
@@ -94,6 +173,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        cell.accessoryType = .disclosureIndicator
         let model = data[indexPath.section][indexPath.row]
         cell.textLabel?.text = model.title
         return cell

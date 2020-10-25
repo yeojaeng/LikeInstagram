@@ -200,7 +200,7 @@ class LoginViewController: UIViewController {
             username = usernameEmail
         }
 
-        // login function
+        // Login function
         AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }

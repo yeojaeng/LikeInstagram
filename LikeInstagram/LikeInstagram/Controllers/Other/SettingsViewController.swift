@@ -94,6 +94,7 @@ final class SettingsViewController: UIViewController {
         let editprofileVC = EditProfileViewController()
         editprofileVC.title = "Edit Profile"
         let navigationVC = UINavigationController(rootViewController: editprofileVC)
+        navigationVC.modalPresentationStyle = .fullScreen
         present(navigationVC, animated: true, completion: nil)
     }
 
@@ -123,8 +124,6 @@ final class SettingsViewController: UIViewController {
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
     }
-
-
 
     private func didTapLogout() {
         let actionSheet: UIAlertController = UIAlertController(title: "Logout",

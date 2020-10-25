@@ -65,7 +65,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: FeedPostTableViewCell = tableView.dequeueReusableCell(withIdentifier: FeedPostTableViewCell.identifier) as? FeedPostTableViewCell else { return UITableViewCell() }
-        
+
         return cell
     }
 }

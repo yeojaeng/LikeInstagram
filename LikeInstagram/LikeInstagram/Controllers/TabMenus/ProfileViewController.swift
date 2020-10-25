@@ -37,15 +37,31 @@ final class ProfileViewController: UIViewController {
     }
 
     private func setupCollectionView() {
+        // set layout
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets.zero
-        layout.itemSize = CGSize(width: view.width / 3, height: view.width / 3)
+        layout.itemSize = CGSize(width: (view.width / 3) - 0.5, height: (view.width / 3) - 0.5)
+        layout.minimumLineSpacing = 0.5
+        layout.minimumInteritemSpacing = 0.5
+        // set collectionview
         collectionView = UICollectionView(frame: .zero,
             collectionViewLayout: layout)
         guard let collectionView = collectionView else {
             return
         }
+        collectionView.backgroundColor = .systemBackground
+        // regist Cell
+        collectionView.register(PhotoCollectionViewCell.self,
+                                forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        // regist Header
+        collectionView.register(ProfileInfoHeaderCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
+
+        collectionView.register(ProfileTabsCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
@@ -61,11 +77,14 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 15
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell: PhotoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else { return UICollectionViewCell() }
+        cell.backgroundColor = .systemBlue
+
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

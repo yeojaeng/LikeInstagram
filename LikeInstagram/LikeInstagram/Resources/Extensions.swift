@@ -52,7 +52,7 @@ extension UIViewController {
         let alertVC: UIAlertController = UIAlertController(title: title,
                                                            message: message,
                                                            preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK",
+        alertVC.addAction(UIAlertAction(title: "확인",
                                         style: .cancel,
                                         handler: nil))
         self.present(alertVC, animated: true, completion: nil)

@@ -9,7 +9,7 @@ import UIKit
 
 import SafariServices
 
-/// 유저 정보 셋팅 컨트롤러
+/// 유저 정보 세팅
 final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
@@ -41,10 +41,13 @@ final class SettingsViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        // set frame UI Component
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
 
+    
+    /// 기본 정보 셋팅
     private func configureModels() {
         data.append([
             SettingCellModel(title: "Edit Profile") { [weak self] in //
@@ -90,6 +93,8 @@ final class SettingsViewController: UIViewController {
             ])
     }
 
+    
+    /// 프로필 이미지 터치시 작동할 메소드
     private func didTapEditprofile() {
         let editprofileVC = EditProfileViewController()
         editprofileVC.title = "Edit Profile"

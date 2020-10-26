@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     // MARK: - Properties
-
+    
     private let usernameEmailField: UITextField = {
         let field: UITextField = UITextField()
         field.placeholder = "Username or Email"
@@ -107,9 +107,9 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        // set frame UI Components
         super.viewDidLayoutSubviews()
 
-        // assign frame
         headerView.frame = CGRect(x: view.left,
                                   y: view.top,
                                   width: view.width,
@@ -177,21 +177,26 @@ class LoginViewController: UIViewController {
         view.addSubview(headerView)
     }
 
+    
+    /// 로그인 검증 메소드
     @objc private func didTapLoginButton() {
         self.view.endEditing(true)
         var username: String?
         var email: String?
 
+        // ID 가져오기
         guard let usernameEmail = usernameEmailField.text, !usernameEmail.isEmpty else {
             showAlert(title: "Login Error", message: "ID를 정확히 입력해주세요.")
             return
         }
 
+        // PW 가져오기
         guard let password = passwordField.text, !password.isEmpty, password.count >= 8 else {
             showAlert(title: "Login Error", message: "페스워드는 8자 이상으로 입력해주세요.")
             return
         }
 
+        // 유효값 검증
         if usernameEmail.contains("@"), usernameEmail.contains(".") {
             // email
             email = usernameEmail
@@ -200,7 +205,7 @@ class LoginViewController: UIViewController {
             username = usernameEmail
         }
 
-        // Login function
+        // 로그인 진행
         AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -215,18 +220,21 @@ class LoginViewController: UIViewController {
         }
     }
 
+    // 사용약관 페이지로 이동
     @objc private func didTapTermsButton() {
         guard let url = URL(string: Constants.termsOfServiceURL) else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
     }
 
+    // 개인정보처리방침 페이지로 이동
     @objc private func didTapPrivacyButton() {
         guard let url = URL(string: Constants.privacyURL) else { return }
         let safariVC = SFSafariViewController(url: url)
         present(safariVC, animated: true, completion: nil)
     }
 
+    // 회원가입 페이지로 이동
     @objc private func didTapCreateAccountButton() {
         let registerVC = RegisterViewController()
         registerVC.title = "Create Account"

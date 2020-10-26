@@ -32,6 +32,7 @@ class NotificationViewController: UIViewController {
     }
 
     override func viewDidLayoutSubviews() {
+        // set frame UI Component
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
@@ -40,6 +41,7 @@ class NotificationViewController: UIViewController {
 extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // check
         return 0
     }
 

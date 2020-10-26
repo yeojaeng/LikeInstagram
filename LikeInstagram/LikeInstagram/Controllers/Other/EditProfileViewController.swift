@@ -30,11 +30,6 @@ class EditProfileViewController: UIViewController {
         configureModels()
     }
 
-//    override func viewDidLayoutSubviews() {
-//        // setup frame view component
-//
-//    }
-
     private func setupBarbutton() {
         let saveButton: UIBarButtonItem = UIBarButtonItem(title: "Save",
                                                           style: .done,
@@ -118,23 +113,23 @@ class EditProfileViewController: UIViewController {
     }
 
     @objc private func didTapChangeProfilePicture() {
-        let actionSheet: UIAlertController = UIAlertController(title: "Profile Picture",
-            message: "Change profile picture",
+        let actionSheet: UIAlertController = UIAlertController(title: "프로필 이미지",
+            message: "프로필 이미지 변경",
             preferredStyle: .actionSheet)
 
-        actionSheet.addAction(UIAlertAction(title: "Take Photo",
+        actionSheet.addAction(UIAlertAction(title: "사진 촬영",
             style: .default,
             handler: { _ in
 
             }))
 
-        actionSheet.addAction(UIAlertAction(title: "Choose from library",
+        actionSheet.addAction(UIAlertAction(title: "갤러리에서 선택",
             style: .default,
             handler: { _ in
 
             }))
 
-        actionSheet.addAction(UIAlertAction(title: "Cancel",
+        actionSheet.addAction(UIAlertAction(title: "취소",
             style: .cancel,
             handler: nil))
 
@@ -175,6 +170,6 @@ extension EditProfileViewController: UITableViewDataSource {
 // MARK: - Custom Delegate mehtod
 extension EditProfileViewController: FormTableViewCellDelegate {
     func formTableViewCell(_ cell: FormTableViewCell, didUpdateField updateModel: EditProfileFormModel) {
-
+        // check
     }
 }

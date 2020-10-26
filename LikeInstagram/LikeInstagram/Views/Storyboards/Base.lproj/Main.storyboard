@@ -67,7 +67,9 @@
         <scene sceneID="XXP-Eh-xkT">
             <objects>
                 <navigationController id="4f1-MN-kKr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="e7c-8l-WJe"/>
+                    <tabBarItem key="tabBarItem" title="" image="person" catalog="system" id="e7c-8l-WJe">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cRb-zD-xFd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -84,7 +86,9 @@
         <scene sceneID="9qi-dU-p6k">
             <objects>
                 <navigationController id="TmS-ie-kdh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" id="NKe-44-PGQ"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" id="NKe-44-PGQ">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wwb-y0-zhh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

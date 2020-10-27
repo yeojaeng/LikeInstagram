@@ -9,6 +9,7 @@ target 'LikeInstagram' do
 
   pod 'SwiftLint'
   pod 'Appirater'
+  pod 'SDWebImage'
 
   # Firebae
   pod 'Firebase/Core'

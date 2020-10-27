@@ -94,6 +94,9 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.11)
+  - SDWebImage (5.9.4):
+    - SDWebImage/Core (= 5.9.4)
+  - SDWebImage/Core (5.9.4)
   - SwiftLint (0.40.3)
 
 DEPENDENCIES:
@@ -104,6 +107,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - Firebase/Database
   - Firebase/Storage
+  - SDWebImage
   - SwiftLint
 
 SPEC REPOS:
@@ -125,6 +129,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SDWebImage
     - SwiftLint
 
 SPEC CHECKSUMS:
@@ -145,8 +150,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
+  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   SwiftLint: dfd554ff0dff17288ee574814ccdd5cea85d76f7
 
-PODFILE CHECKSUM: 16ca09133666208b9c8ab7ff5c68fc75d6ffae95
+PODFILE CHECKSUM: e5a677b276a598c2676c227f3eef94723b1ff2df
 
 COCOAPODS: 1.9.1

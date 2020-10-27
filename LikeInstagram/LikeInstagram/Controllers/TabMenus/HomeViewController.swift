@@ -34,14 +34,12 @@ class HomeViewController: UIViewController {
         tableView.frame = view.bounds
     }
 
-
     /// TableView의 기본적인 Setting을 진행하는 메소드
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     }
-
 
     /// 로그인 상태를 확인하여 분기하는 메소드
     private func checkAuthStatus() {

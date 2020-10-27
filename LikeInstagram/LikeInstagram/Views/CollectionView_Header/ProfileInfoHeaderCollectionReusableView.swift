@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Headerview for ProfileVC
 class ProfileInfoHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier: String = "ProfileInfoHeaderCollectionReusableView"
 }

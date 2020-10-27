@@ -50,8 +50,8 @@ class FormTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // Assign frames
     override func layoutSubviews() {
+        // set frame UI Component
         super.layoutSubviews()
         formLabel.frame = CGRect(x: 5,
                                  y: 0,
@@ -65,6 +65,7 @@ class FormTableViewCell: UITableViewCell {
     }
 
     override func prepareForReuse() {
+        // 재사용시 객체 프로퍼티 초기화
         super.prepareForReuse()
         formLabel.text = nil
         field.placeholder = nil
@@ -88,6 +89,7 @@ extension FormTableViewCell: UITextFieldDelegate {
         guard let model = model else {
             return true
         }
+        // 델리게이트 메서드 호출
         delegate?.formTableViewCell(self, didUpdateField: model)
         textField.resignFirstResponder()
         return true

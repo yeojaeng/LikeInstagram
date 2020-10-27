@@ -30,20 +30,21 @@ final class ProfileViewController: UIViewController {
 
     private func configureNavigationBar() {
         let rightBarBtn: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape"),
-                                                           style: .done,
-                                                           target: self,
-                                                           action: #selector(didTapSettingButton))
+            style: .done,
+            target: self,
+            action: #selector(didTapSettingButton))
         navigationItem.rightBarButtonItem = rightBarBtn
     }
 
     private func setupCollectionView() {
         // set layout
-        let layout = UICollectionViewFlowLayout()
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let width: CGFloat = view.width
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets.zero
-        layout.itemSize = CGSize(width: (view.width / 3) - 0.5, height: (view.width / 3) - 0.5)
-        layout.minimumLineSpacing = 0.5
-        layout.minimumInteritemSpacing = 0.5
+        layout.itemSize = CGSize(width: (width / 3) - 1, height: (width / 3))
+        layout.minimumLineSpacing = 1
+        layout.minimumInteritemSpacing = 1
         // set collectionview
         collectionView = UICollectionView(frame: .zero,
             collectionViewLayout: layout)
@@ -53,15 +54,15 @@ final class ProfileViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         // regist Cell
         collectionView.register(PhotoCollectionViewCell.self,
-                                forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+            forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         // regist Header
         collectionView.register(ProfileInfoHeaderCollectionReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier)
 
         collectionView.register(ProfileTabsCollectionReusableView.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ProfileTabsCollectionReusableView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
@@ -76,13 +77,20 @@ final class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        if section == 0 {
+            return 0
+        }
+        return 30       // section 1 for post image
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell: PhotoCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .systemBlue
+        cell.configure(with: "test")
 
         return cell
     }
@@ -91,4 +99,42 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            // footer
+            return UICollectionReusableView()
+        }
+
+        if indexPath.section ==  1 {
+            // 탭바 헤더 생성
+            guard let tabsHeader: UICollectionReusableView =
+                collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                    withReuseIdentifier: ProfileTabsCollectionReusableView.identifier,
+                    for: indexPath) as? ProfileTabsCollectionReusableView else { return ProfileTabsCollectionReusableView() }
+
+            return tabsHeader
+        }
+
+        // headerView 생성
+        guard let profileHeaderView: UICollectionReusableView =
+            collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                withReuseIdentifier: ProfileInfoHeaderCollectionReusableView.identifier,
+                for: indexPath) as? ProfileInfoHeaderCollectionReusableView else { return ProfileInfoHeaderCollectionReusableView() }
+
+        return profileHeaderView
+    }
+
+    // 헤더 뷰의 사이즈 높이 지정
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        // profile 헤더 뷰 사이즈
+        if section == 0 {
+            return CGSize(width: collectionView.width,
+                          height: collectionView.height / 3)
+        }
+
+        // 탭바 헤더 사이즈
+        return CGSize(width: collectionView.width,
+                      height: 65)
+    }
 }

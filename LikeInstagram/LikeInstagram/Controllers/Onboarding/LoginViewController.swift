@@ -11,7 +11,7 @@ import UIKit
 class LoginViewController: UIViewController {
 
     // MARK: - Properties
-    
+
     private let usernameEmailField: UITextField = {
         let field: UITextField = UITextField()
         field.placeholder = "Username or Email"
@@ -93,17 +93,17 @@ class LoginViewController: UIViewController {
         passwordField.delegate = self
         addSubViews()
         loginButton.addTarget(self,
-                              action: #selector(didTapLoginButton),
-                              for: .touchUpInside)
+            action: #selector(didTapLoginButton),
+            for: .touchUpInside)
         createAccountButton.addTarget(self,
-                                      action: #selector(didTapCreateAccountButton),
-                                      for: .touchUpInside)
+            action: #selector(didTapCreateAccountButton),
+            for: .touchUpInside)
         termsButton.addTarget(self,
-                              action: #selector(didTapTermsButton),
-                              for: .touchUpInside)
+            action: #selector(didTapTermsButton),
+            for: .touchUpInside)
         privacyButton.addTarget(self,
-                                action: #selector(didTapPrivacyButton),
-                                for: .touchUpInside)
+            action: #selector(didTapPrivacyButton),
+            for: .touchUpInside)
     }
 
     override func viewDidLayoutSubviews() {
@@ -111,39 +111,39 @@ class LoginViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         headerView.frame = CGRect(x: view.left,
-                                  y: view.top,
-                                  width: view.width,
-                                  height: view.height / 3.0)
+            y: view.top,
+            width: view.width,
+            height: view.height / 3.0)
 
         usernameEmailField.frame = CGRect(x: 25,
-                                          y: headerView.bottom + 40,
-                                          width: view.width - 50,
-                                          height: 52.0)
+            y: headerView.bottom + 40,
+            width: view.width - 50,
+            height: 52.0)
 
         passwordField.frame = CGRect(x: 25,
-                                     y: usernameEmailField.bottom + 10,
-                                     width: view.width - 50,
-                                     height: 52.0)
+            y: usernameEmailField.bottom + 10,
+            width: view.width - 50,
+            height: 52.0)
 
         loginButton.frame = CGRect(x: 25,
-                                   y: passwordField.bottom + 30,
-                                   width: view.width - 50,
-                                   height: 52.0)
+            y: passwordField.bottom + 30,
+            width: view.width - 50,
+            height: 52.0)
 
         createAccountButton.frame = CGRect(x: 25,
-                                           y: loginButton.bottom + 10,
-                                           width: view.width - 50,
-                                           height: 52.0)
+            y: loginButton.bottom + 10,
+            width: view.width - 50,
+            height: 52.0)
 
         termsButton.frame = CGRect(x: 10,
-                                   y: view.height - view.safeAreaInsets.bottom - 100,
-                                   width: view.width - 20,
-                                   height: 50)
+            y: view.height - view.safeAreaInsets.bottom - 100,
+            width: view.width - 20,
+            height: 50)
 
         privacyButton.frame = CGRect(x: 10,
-                                     y: view.height - view.safeAreaInsets.bottom - 50,
-                                     width: view.width - 20,
-                                     height: 50)
+            y: view.height - view.safeAreaInsets.bottom - 50,
+            width: view.width - 20,
+            height: 50)
 
         configureHeaderView()
     }
@@ -162,9 +162,9 @@ class LoginViewController: UIViewController {
         headerView.addSubview(logoView)
         logoView.contentMode = .scaleAspectFit
         logoView.frame = CGRect(x: headerView.width / 4.0,
-                                y: view.safeAreaInsets.top,
-                                width: headerView.width / 2.0,
-                                height: headerView.height - view.safeAreaInsets.top)
+            y: view.safeAreaInsets.top,
+            width: headerView.width / 2.0,
+            height: headerView.height - view.safeAreaInsets.top)
     }
 
     private func addSubViews() {
@@ -177,7 +177,6 @@ class LoginViewController: UIViewController {
         view.addSubview(headerView)
     }
 
-    
     /// 로그인 검증 메소드
     @objc private func didTapLoginButton() {
         self.view.endEditing(true)
